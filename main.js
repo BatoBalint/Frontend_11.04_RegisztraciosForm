@@ -5,6 +5,7 @@ var jelszoDiv;
 var jelszoDb;
 var jelszoInput;
 var jelszoMegintInput;
+var jelszavakEgyeznekDiv;
 
 var error = false;
 
@@ -15,6 +16,7 @@ function init() {
   nevDb = document.getElementById('nameCharCount');
   jelszoDiv = document.getElementById('passCharCountDiv');
   jelszoDb = document.getElementById('passCharCount');
+  jelszavakEgyeznekDiv = document.getElementById('passMatch');
 
   nevInput = document.getElementById('nameInput');
   nevInput.addEventListener('input', nevInputChange);
@@ -23,6 +25,7 @@ function init() {
   jelszoInput.addEventListener('input', passInputChange);
 
   jelszoMegintInput = document.getElementById('passAgainInput');
+  jelszoMegintInput.addEventListener('change', passAgainChange);
 
   regBtn = document.getElementById('regBtn');
   regBtn.addEventListener('click', regButtonCLick);
@@ -49,6 +52,14 @@ function passInputChange() {
     jelszoDiv.classList.add('text-danger');
   } else if (length >= 8) {
     jelszoDiv.classList.remove('text-danger');
+  }
+}
+
+function passAgainChange() {
+  if (jelszoInput.value !== jelszoMegintInput.value) {
+    jelszavakEgyeznekDiv.classList.remove('hidden');
+  } else if (jelszoInput.value === jelszoMegintInput.value) {
+    jelszavakEgyeznekDiv.classList.add('hidden');
   }
 }
 
